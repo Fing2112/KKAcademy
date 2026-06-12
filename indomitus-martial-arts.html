@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Indomitus Martial Arts — a martial arts academy built on discipline, honor, and uncompromising excellence. Train BJJ, Muay Thai, Boxing, and MMA.">
+<title>Indomitus Martial Arts — Forge Discipline. Become Indomitable.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0F0F0F;
+    --obsidian:#171717;
+    --obsidian-2:#1d1d1d;
+    --gold:#C8A13B;
+    --gold-2:#A67C29;
+    --gold-soft:#d8b85a;
+    --crimson:#8B0000;
+    --blood:#5A0000;
+    --white:#F4F1EA;
+    --grey:#a9a59c;
+    --grey-2:#6f6c66;
+    --line:rgba(200,161,59,.22);
+    --line-soft:rgba(200,161,59,.10);
+    --display:'Cinzel', serif;
+    --serif:'Cormorant Garamond', serif;
+    --body:'Inter', system-ui, sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --maxw:1240px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--black);
+    color:var(--white);
+    font-family:var(--body);
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* stone grain overlay across the whole page */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;z-index:1;
+    opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer}
+  ::selection{background:var(--gold);color:var(--black)}
+
+  h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:.04em;line-height:1.12;margin:0;color:var(--white)}
+  .gold{color:var(--gold)}
+
+  /* ---------- layout helpers ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  .section{padding:120px 0;position:relative}
+  .section--tight{padding:96px 0}
+
+  .eyebrow{
+    font-family:var(--display);
+    font-size:12px;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;
+    display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;
+  }
+  .eyebrow::before,.eyebrow::after{content:"";height:1px;width:34px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .eyebrow::after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .eyebrow--solo::before{display:none}
+
+  .section-head{max-width:720px;margin:0 auto 64px;text-align:center}
+  .section-head h2{font-size:clamp(2rem,4.2vw,3.4rem);text-transform:uppercase}
+  .section-head p{color:var(--grey);font-size:1.05rem;margin-top:18px}
+
+  /* engraved laurel divider */
+  .ornament{display:flex;align-items:center;justify-content:center;gap:18px;margin:14px auto 0;color:var(--gold)}
+  .ornament svg{width:120px;height:auto;opacity:.85}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:16px 34px;font-family:var(--display);font-weight:600;
+    font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;
+    border:1px solid var(--gold);color:var(--gold);background:rgba(15,15,15,.4);
+    border-radius:2px;transition:all .4s var(--ease);position:relative;overflow:hidden;
+  }
+  .btn::after{
+    content:"";position:absolute;inset:0;background:var(--gold);
+    transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1;
+  }
+  .btn:hover{color:var(--black);box-shadow:0 0 28px rgba(200,161,59,.4)}
+  .btn:hover::after{transform:translateY(0)}
+  .btn--solid{background:var(--gold);color:var(--black);border-color:var(--gold)}
+  .btn--solid::after{background:var(--gold-soft)}
+  .btn--solid:hover{color:var(--black)}
+  .btn--ghost{border-color:rgba(244,241,234,.32);color:var(--white)}
+  .btn--ghost::after{background:var(--white)}
+  .btn--lg{padding:19px 46px;font-size:.9rem}
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    transition:background .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(10,10,10,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 18px 40px rgba(0,0,0,.55);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:88px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .crest{width:38px;height:38px;color:var(--gold);flex:none}
+  .brand .word{font-family:var(--display);font-weight:700;letter-spacing:.26em;font-size:1.15rem;color:var(--white)}
+  .brand .word b{color:var(--gold);font-weight:700}
+  .brand small{display:block;font-family:var(--serif);font-style:italic;letter-spacing:.18em;font-size:.62rem;color:var(--gold-2);text-transform:uppercase}
+
+  .nav-links{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
+  .nav-links a{
+    font-family:var(--display);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--grey);padding:10px 16px;position:relative;transition:color .3s var(--ease);font-weight:500;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:16px;right:16px;bottom:4px;height:1px;
+    background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+  .nav-cta{margin-left:14px}
+  .nav-cta .btn{padding:12px 24px;font-size:.7rem}
+
+  .burger{display:none;background:none;border:0;width:42px;height:42px;color:var(--gold);position:relative}
+  .burger span{position:absolute;left:9px;right:9px;height:2px;background:currentColor;transition:.35s var(--ease)}
+  .burger span:nth-child(1){top:14px}
+  .burger span:nth-child(2){top:20px}
+  .burger span:nth-child(3){top:26px}
+  body.menu-open .burger span:nth-child(1){top:20px;transform:rotate(45deg)}
+  body.menu-open .burger span:nth-child(2){opacity:0}
+  body.menu-open .burger span:nth-child(3){top:20px;transform:rotate(-45deg)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;overflow:hidden}
+  .slides{position:absolute;inset:0;z-index:0}
+  .slide{
+    position:absolute;inset:0;opacity:0;transition:opacity 1.6s var(--ease);
+    transform:scale(1.06);will-change:opacity,transform;
+  }
+  .slide.is-active{opacity:1;animation:kenburns 9s linear forwards}
+  @keyframes kenburns{from{transform:scale(1.06)}to{transform:scale(1.16)}}
+  /* each slide a distinct cinematic atmosphere built from gradients + motif */
+  .slide-1{background:
+    radial-gradient(120% 90% at 70% 30%,rgba(200,161,59,.16),transparent 55%),
+    radial-gradient(80% 70% at 20% 80%,rgba(139,0,0,.18),transparent 60%),
+    linear-gradient(160deg,#1a1814,#0b0b0b 70%);}
+  .slide-2{background:
+    radial-gradient(90% 80% at 30% 25%,rgba(200,161,59,.18),transparent 55%),
+    radial-gradient(70% 60% at 80% 70%,rgba(90,0,0,.28),transparent 60%),
+    linear-gradient(200deg,#161311,#0a0a0a 70%);}
+  .slide-3{background:
+    radial-gradient(100% 80% at 50% 20%,rgba(200,161,59,.12),transparent 50%),
+    radial-gradient(90% 90% at 60% 90%,rgba(139,0,0,.22),transparent 55%),
+    linear-gradient(140deg,#13110d,#0c0c0c 70%);}
+  .slide-4{background:
+    radial-gradient(120% 90% at 25% 35%,rgba(200,161,59,.2),transparent 55%),
+    linear-gradient(170deg,#191510,#090909 75%);}
+  .slide-5{background:
+    radial-gradient(100% 90% at 75% 25%,rgba(200,161,59,.14),transparent 55%),
+    radial-gradient(80% 80% at 25% 85%,rgba(90,0,0,.26),transparent 60%),
+    linear-gradient(150deg,#15120e,#0a0a0a 72%);}
+  .slide .motif{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--gold);opacity:.07;
+  }
+  .slide .motif svg{width:min(70vw,640px);height:auto}
+  /* vignette + bottom fade */
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(120% 100% at 50% 40%,transparent 40%,rgba(0,0,0,.55) 100%),
+      linear-gradient(180deg,rgba(0,0,0,.5),transparent 30%,transparent 55%,rgba(15,15,15,.96));
+  }
+  .hero-inner{position:relative;z-index:3;max-width:920px}
+  .hero .motto{
+    font-family:var(--display);letter-spacing:.46em;font-size:.72rem;text-transform:uppercase;
+    color:var(--gold);margin-bottom:30px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,7vw,5.6rem);text-transform:uppercase;line-height:1.04;
+    text-shadow:0 6px 40px rgba(0,0,0,.7);
+  }
+  .hero h1 .red{color:var(--gold);display:block}
+  .hero p{
+    font-family:var(--serif);font-size:clamp(1.1rem,2.2vw,1.5rem);color:#d7d3c8;
+    max-width:640px;margin:28px 0 40px;line-height:1.5;font-weight:400;
+  }
+  .hero-actions{display:flex;gap:18px;flex-wrap:wrap}
+
+  .hero-ctl{position:absolute;bottom:46px;left:0;right:0;z-index:4}
+  .hero-ctl .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .dots{display:flex;gap:12px}
+  .dots button{
+    width:34px;height:3px;border:0;background:rgba(244,241,234,.22);padding:0;border-radius:2px;
+    transition:background .4s var(--ease);
+  }
+  .dots button.active{background:var(--gold)}
+  .arrows{display:flex;gap:10px}
+  .arrows button{
+    width:48px;height:48px;border:1px solid var(--line);background:rgba(15,15,15,.5);
+    color:var(--gold);border-radius:2px;display:grid;place-items:center;transition:.35s var(--ease);
+  }
+  .arrows button:hover{background:var(--gold);color:var(--black);box-shadow:0 0 22px rgba(200,161,59,.4)}
+  .scroll-hint{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);z-index:4;
+    font-family:var(--display);font-size:.6rem;letter-spacing:.4em;color:var(--grey);text-transform:uppercase;text-align:center}
+  .scroll-hint .line{width:1px;height:42px;background:linear-gradient(var(--gold),transparent);margin:12px auto 0;animation:drop 2.2s var(--ease) infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(38px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-d="1"]{transition-delay:.1s}
+  .reveal[data-d="2"]{transition-delay:.2s}
+  .reveal[data-d="3"]{transition-delay:.3s}
+  .reveal[data-d="4"]{transition-delay:.4s}
+  .reveal[data-d="5"]{transition-delay:.5s}
+
+  /* ---------- why ---------- */
+  .why{background:linear-gradient(180deg,var(--black),var(--obsidian))}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .feature{
+    background:linear-gradient(180deg,rgba(29,29,29,.9),rgba(15,15,15,.9));
+    border:1px solid var(--line-soft);border-top:1px solid var(--line);
+    padding:46px 30px;border-radius:3px;text-align:center;transition:.45s var(--ease);position:relative;
+  }
+  .feature::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .45s var(--ease)}
+  .feature:hover{transform:translateY(-8px);border-color:var(--line);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+  .feature:hover::before{opacity:1}
+  .icon-frame{
+    width:78px;height:78px;border-radius:50%;display:grid;place-items:center;margin:0 auto 26px;
+    border:1px solid var(--gold);color:var(--gold);position:relative;
+    background:radial-gradient(circle,rgba(200,161,59,.1),transparent 70%);
+  }
+  .icon-frame::after{content:"";position:absolute;inset:-7px;border:1px solid var(--line-soft);border-radius:50%}
+  .icon-frame svg{width:34px;height:34px}
+  .feature h3{font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+  .feature p{color:var(--grey);font-size:.92rem;margin:0}
+
+  /* ---------- programs ---------- */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .prog{
+    position:relative;border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;
+    background:var(--obsidian);transition:.45s var(--ease);
+  }
+  .prog:hover{border-color:var(--line);transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+  .prog-img{height:230px;position:relative;display:grid;place-items:center;color:rgba(200,161,59,.5);overflow:hidden}
+  .prog-img .ph{position:absolute;inset:0;transition:transform .8s var(--ease)}
+  .prog:hover .prog-img .ph{transform:scale(1.08)}
+  .prog-img svg{position:relative;z-index:2;width:62px;height:62px;opacity:.55;transition:.45s var(--ease)}
+  .prog:hover .prog-img svg{opacity:.85;color:var(--gold)}
+  .prog-img::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 30%,rgba(15,15,15,.85))}
+  .p1{background:linear-gradient(150deg,#241c12,#0f0f0f),radial-gradient(circle at 30% 20%,rgba(200,161,59,.2),transparent 50%)}
+  .p2{background:linear-gradient(150deg,#2a1212,#0f0f0f),radial-gradient(circle at 70% 25%,rgba(139,0,0,.3),transparent 55%)}
+  .p3{background:linear-gradient(150deg,#1d1a14,#0f0f0f),radial-gradient(circle at 50% 30%,rgba(200,161,59,.16),transparent 55%)}
+  .p4{background:linear-gradient(150deg,#251610,#0f0f0f),radial-gradient(circle at 25% 30%,rgba(139,0,0,.24),transparent 55%)}
+  .p5{background:linear-gradient(150deg,#1f1c15,#0f0f0f),radial-gradient(circle at 60% 20%,rgba(200,161,59,.2),transparent 55%)}
+  .p6{background:linear-gradient(150deg,#211913,#0f0f0f),radial-gradient(circle at 40% 25%,rgba(200,161,59,.18),transparent 55%)}
+  .prog-body{padding:30px 28px 34px}
+  .prog-body h3{font-size:1.2rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+  .prog-body p{color:var(--grey);font-size:.92rem;margin:0 0 22px}
+  .learn{font-family:var(--display);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:inline-flex;gap:9px;align-items:center;transition:gap .3s var(--ease)}
+  .learn:hover{gap:15px}
+  .tag{position:absolute;top:18px;left:18px;z-index:3;font-family:var(--display);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);background:rgba(10,10,10,.7);border:1px solid var(--line);padding:6px 12px;border-radius:2px}
+
+  /* ---------- schedule ---------- */
+  .schedule{background:var(--obsidian)}
+  .filters{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+  .chip{font-family:var(--display);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);
+    border:1px solid var(--line-soft);background:rgba(15,15,15,.6);padding:11px 22px;border-radius:2px;transition:.35s var(--ease)}
+  .chip.active,.chip:hover{color:var(--black);background:var(--gold);border-color:var(--gold)}
+  .timetable{border:1px solid var(--line-soft);border-radius:3px;overflow:hidden}
+  .tt-row{display:grid;grid-template-columns:110px repeat(5,1fr);border-bottom:1px solid var(--line-soft)}
+  .tt-row:last-child{border-bottom:0}
+  .tt-row.head{background:rgba(200,161,59,.06)}
+  .tt-row.head div{font-family:var(--display);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:16px 10px;text-align:center}
+  .tt-time{font-family:var(--display);font-size:.74rem;color:var(--gold-2);padding:18px 12px;border-right:1px solid var(--line-soft);display:flex;align-items:center;letter-spacing:.08em}
+  .tt-cell{padding:10px;border-right:1px solid var(--line-soft);min-height:78px;display:flex;flex-direction:column;justify-content:center;gap:3px}
+  .tt-cell:last-child{border-right:0}
+  .cls{border-left:2px solid var(--gold);background:rgba(29,29,29,.8);padding:8px 10px;border-radius:2px;transition:.3s var(--ease)}
+  .cls:hover{background:rgba(200,161,59,.12)}
+  .cls b{font-family:var(--body);font-weight:600;font-size:.82rem;color:var(--white);display:block}
+  .cls span{font-size:.68rem;color:var(--grey);letter-spacing:.04em}
+  .cls.red{border-left-color:var(--crimson)}
+
+  /* ---------- membership ---------- */
+  .member{background:linear-gradient(180deg,var(--obsidian),var(--black))}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+  .plan{
+    background:linear-gradient(180deg,rgba(29,29,29,.95),rgba(15,15,15,.95));
+    border:1px solid var(--line-soft);border-radius:3px;padding:42px 34px;position:relative;
+    transition:.45s var(--ease);display:flex;flex-direction:column;
+  }
+  .plan:hover{transform:translateY(-8px);border-color:var(--line);box-shadow:0 34px 70px rgba(0,0,0,.6)}
+  .plan.featured{border:1px solid var(--gold);box-shadow:0 0 0 1px rgba(200,161,59,.2),0 34px 70px rgba(0,0,0,.6);transform:scale(1.04)}
+  .plan.featured:hover{transform:scale(1.04) translateY(-8px)}
+  .ribbon{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+    font-family:var(--display);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--black);
+    background:var(--gold);padding:7px 20px;border-radius:2px;box-shadow:0 8px 22px rgba(200,161,59,.3)}
+  .plan h3{font-size:1.1rem;letter-spacing:.16em;text-transform:uppercase;text-align:center;margin-bottom:6px}
+  .plan .desc{text-align:center;color:var(--grey);font-size:.84rem;margin-bottom:26px}
+  .price{text-align:center;margin-bottom:28px;font-family:var(--display)}
+  .price .amt{font-size:3rem;color:var(--gold);font-weight:700}
+  .price .per{font-family:var(--body);font-size:.8rem;color:var(--grey);letter-spacing:.05em}
+  .feats{list-style:none;margin:0 0 30px;padding:0;flex:1}
+  .feats li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line-soft);color:#d7d3c8;font-size:.9rem}
+  .feats li:last-child{border-bottom:0}
+  .feats svg{width:17px;height:17px;color:var(--gold);flex:none;margin-top:4px}
+  .feats li.off{color:var(--grey-2)}
+  .feats li.off svg{color:var(--grey-2)}
+
+  /* ---------- testimonials ---------- */
+  .testi{background:var(--black)}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .quote{
+    background:linear-gradient(160deg,var(--obsidian),var(--black));
+    border:1px solid var(--line-soft);border-radius:3px;padding:48px 42px;position:relative;
+  }
+  .quote .mark{font-family:var(--display);font-size:5rem;color:var(--gold);opacity:.32;line-height:.6;position:absolute;top:26px;left:30px}
+  .quote p{font-family:var(--serif);font-size:1.32rem;font-style:italic;color:#e3dfd4;line-height:1.5;position:relative;z-index:2;margin:24px 0 26px}
+  .quote .who{display:flex;align-items:center;gap:16px}
+  .avatar{width:50px;height:50px;border-radius:50%;border:1px solid var(--gold);background:radial-gradient(circle,rgba(200,161,59,.2),var(--obsidian));display:grid;place-items:center;color:var(--gold);font-family:var(--display);font-weight:700;flex:none}
+  .who b{font-family:var(--display);font-size:.92rem;letter-spacing:.08em;display:block}
+  .who span{color:var(--gold-2);font-size:.78rem;letter-spacing:.06em}
+
+  /* ---------- social ---------- */
+  .social{background:var(--obsidian)}
+  .masonry{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:14px}
+  .tile{position:relative;border-radius:3px;overflow:hidden;border:1px solid var(--line-soft);display:grid;place-items:center;color:rgba(200,161,59,.45);transition:.45s var(--ease)}
+  .tile svg{width:40px;height:40px;transition:.45s var(--ease)}
+  .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,10,10,.7))}
+  .tile:hover{border-color:var(--line)}
+  .tile:hover svg{color:var(--gold);transform:scale(1.12)}
+  .tile.big{grid-row:span 2;grid-column:span 2}
+  .t1{background:linear-gradient(140deg,#241c12,#0f0f0f)}
+  .t2{background:linear-gradient(140deg,#2a1212,#0f0f0f)}
+  .t3{background:linear-gradient(140deg,#1d1a14,#0f0f0f)}
+  .t4{background:linear-gradient(140deg,#231711,#0f0f0f)}
+  .t5{background:linear-gradient(140deg,#1f1c15,#0f0f0f)}
+  .socials{display:flex;gap:16px;justify-content:center;margin-top:48px;flex-wrap:wrap}
+  .soc{display:inline-flex;align-items:center;gap:11px;font-family:var(--display);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    border:1px solid var(--line);color:var(--gold);padding:13px 24px;border-radius:2px;transition:.4s var(--ease)}
+  .soc:hover{background:var(--gold);color:var(--black);box-shadow:0 0 24px rgba(200,161,59,.35)}
+  .soc svg{width:18px;height:18px}
+
+  /* ---------- faq ---------- */
+  .faq{background:var(--black)}
+  .acc{max-width:840px;margin:0 auto;border-top:1px solid var(--line-soft)}
+  .acc-item{border-bottom:1px solid var(--line-soft)}
+  .acc-q{width:100%;background:none;border:0;color:var(--white);text-align:left;padding:26px 8px;
+    font-family:var(--display);font-size:1rem;letter-spacing:.06em;display:flex;justify-content:space-between;align-items:center;gap:20px;transition:color .3s var(--ease)}
+  .acc-q:hover{color:var(--gold)}
+  .acc-q .pm{width:22px;height:22px;flex:none;position:relative}
+  .acc-q .pm::before,.acc-q .pm::after{content:"";position:absolute;background:var(--gold);transition:.35s var(--ease)}
+  .acc-q .pm::before{top:10px;left:0;right:0;height:2px}
+  .acc-q .pm::after{left:10px;top:0;bottom:0;width:2px}
+  .acc-item.open .pm::after{transform:rotate(90deg);opacity:0}
+  .acc-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+  .acc-a p{color:var(--grey);font-size:.95rem;padding:0 8px 26px;margin:0}
+
+  /* ---------- about ---------- */
+  .about{background:linear-gradient(180deg,var(--black),var(--obsidian))}
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+  .about-grid p{color:var(--grey);font-size:1rem;margin:0 0 20px}
+  .about-grid p:first-of-type{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:#e3dfd4;line-height:1.5}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;border:1px solid var(--line-soft);border-radius:3px;overflow:hidden}
+  .stat{background:var(--obsidian);padding:38px 28px;text-align:center}
+  .stat .num{font-family:var(--display);font-size:2.6rem;font-weight:700;color:var(--gold)}
+  .stat .lab{font-family:var(--display);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);margin-top:8px}
+  .values{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px}
+  .value{text-align:center;padding:30px 18px;border:1px solid var(--line-soft);border-radius:3px;background:rgba(15,15,15,.5);transition:.4s var(--ease)}
+  .value:hover{border-color:var(--line);transform:translateY(-6px)}
+  .value svg{width:30px;height:30px;color:var(--gold);margin-bottom:14px}
+  .value b{font-family:var(--display);font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px}
+  .value span{color:var(--grey);font-size:.8rem}
+
+  /* coaches */
+  .coaches{background:var(--obsidian)}
+  .coach{background:var(--black);border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;transition:.45s var(--ease)}
+  .coach:hover{border-color:var(--line);transform:translateY(-6px);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+  .coach-img{height:280px;position:relative;display:grid;place-items:center;color:rgba(200,161,59,.4)}
+  .coach-img svg{width:64px;height:64px}
+  .coach-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(15,15,15,.9))}
+  .coach-body{padding:28px}
+  .coach-body h3{font-size:1.15rem;letter-spacing:.08em}
+  .coach-body .role{font-family:var(--display);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:8px 0 16px}
+  .coach-bio{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);color:var(--grey);font-size:.9rem}
+  .coach.open .coach-bio{max-height:200px}
+  .coach-toggle{margin-top:16px;font-family:var(--display);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:none;border:0;padding:0;display:inline-flex;gap:8px;align-items:center}
+
+  /* ---------- final cta ---------- */
+  .final{position:relative;text-align:center;padding:150px 0;overflow:hidden;
+    background:linear-gradient(180deg,rgba(10,10,10,.86),rgba(10,10,10,.94)),
+      radial-gradient(80% 120% at 50% 0%,rgba(139,0,0,.35),transparent 60%),
+      linear-gradient(160deg,#1a1610,#0a0a0a);}
+  .final::before{content:"";position:absolute;inset:0;opacity:.08;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 30h60M30 0v60' stroke='%23C8A13B' stroke-width='.5'/%3E%3C/svg%3E");}
+  .final h2{font-size:clamp(2.2rem,5vw,4rem);text-transform:uppercase;position:relative;z-index:2}
+  .final p{font-family:var(--serif);font-size:1.3rem;color:#d7d3c8;max-width:620px;margin:24px auto 40px;position:relative;z-index:2}
+  .final .btn{position:relative;z-index:2}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--obsidian)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px}
+  .form-field{margin-bottom:22px}
+  .form-field label{font-family:var(--display);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
+  .form-field input,.form-field textarea{
+    width:100%;background:var(--black);border:1px solid var(--line-soft);color:var(--white);
+    padding:15px 16px;border-radius:2px;font-family:var(--body);font-size:.95rem;transition:.3s var(--ease);
+  }
+  .form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 1px rgba(200,161,59,.3)}
+  .form-field textarea{resize:vertical;min-height:130px}
+  .info-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
+  .info{border:1px solid var(--line-soft);border-radius:3px;padding:24px;background:var(--black);transition:.4s var(--ease)}
+  .info:hover{border-color:var(--line)}
+  .info svg{width:24px;height:24px;color:var(--gold);margin-bottom:12px}
+  .info b{font-family:var(--display);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px}
+  .info span{color:var(--grey);font-size:.88rem}
+  .map{border:1px solid var(--line-soft);border-radius:3px;height:240px;display:grid;place-items:center;
+    background:repeating-linear-gradient(45deg,#141414,#141414 12px,#171717 12px,#171717 24px);color:var(--grey-2);position:relative;overflow:hidden}
+  .map svg{width:42px;height:42px;color:var(--gold);opacity:.5}
+  .map span{position:absolute;bottom:16px;font-family:var(--display);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--black);border-top:1px solid var(--line);padding:80px 0 36px;position:relative}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1.4fr;gap:54px;margin-bottom:56px}
+  .foot-brand .brand{margin-bottom:20px}
+  .foot-brand p{color:var(--grey);font-size:.9rem;max-width:300px}
+  .foot-col h4{font-family:var(--display);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+  .foot-col a{display:block;color:var(--grey);font-size:.9rem;padding:7px 0;transition:color .3s var(--ease)}
+  .foot-col a:hover{color:var(--gold)}
+  .news p{color:var(--grey);font-size:.9rem;margin:0 0 18px}
+  .news-form{display:flex;gap:0;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+  .news-form input{flex:1;background:var(--obsidian);border:0;color:var(--white);padding:14px 16px;font-family:var(--body);font-size:.9rem}
+  .news-form input:focus{outline:none}
+  .news-form button{background:var(--gold);border:0;color:var(--black);padding:0 22px;font-family:var(--display);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;transition:.3s var(--ease)}
+  .news-form button:hover{background:var(--gold-soft)}
+  .foot-social{display:flex;gap:12px;margin-top:24px}
+  .foot-social a{width:42px;height:42px;border:1px solid var(--line);border-radius:2px;display:grid;place-items:center;color:var(--gold);transition:.4s var(--ease)}
+  .foot-social a:hover{background:var(--gold);color:var(--black)}
+  .foot-social svg{width:18px;height:18px}
+  .copy{border-top:1px solid var(--line-soft);padding-top:30px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    font-size:.78rem;color:var(--grey-2);letter-spacing:.04em}
+  .copy .motto{font-family:var(--display);letter-spacing:.26em;color:var(--gold-2);text-transform:uppercase;font-size:.7rem}
+
+  /* ---------- floating mobile cta ---------- */
+  .float-cta{position:fixed;bottom:0;left:0;right:0;z-index:90;display:none;padding:14px 18px;
+    background:linear-gradient(180deg,transparent,rgba(10,10,10,.96) 30%);}
+  .float-cta .btn{width:100%}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:1024px){
+    .grid-4{grid-template-columns:repeat(2,1fr)}
+    .grid-3{grid-template-columns:repeat(2,1fr)}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .masonry{grid-template-columns:repeat(3,1fr)}
+  }
+  @media(max-width:860px){
+    .burger{display:block}
+    .nav-links{position:fixed;inset:88px 0 0;background:rgba(10,10,10,.98);backdrop-filter:blur(14px);
+      flex-direction:column;justify-content:center;gap:8px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:99}
+    body.menu-open .nav-links{transform:none}
+    .nav-links a{font-size:1.1rem;padding:18px}
+    .nav-cta{display:none}
+    .float-cta{display:block}
+    .plans{grid-template-columns:1fr;gap:20px}
+    .plan.featured{transform:none}
+    .plan.featured:hover{transform:translateY(-8px)}
+    .grid-2{grid-template-columns:1fr}
+    .values{grid-template-columns:repeat(2,1fr)}
+    .contact-grid{grid-template-columns:1fr;gap:40px}
+    .foot-grid{grid-template-columns:1fr;gap:40px}
+    .section{padding:88px 0}
+    /* schedule -> stacked accordion-like */
+    .timetable{border:0}
+    .tt-row.head{display:none}
+    .tt-row{grid-template-columns:1fr;border:1px solid var(--line-soft);border-radius:3px;margin-bottom:14px}
+    .tt-time{border-right:0;border-bottom:1px solid var(--line-soft);background:rgba(200,161,59,.06);justify-content:center}
+    .tt-cell{border-right:0;border-bottom:1px solid var(--line-soft);min-height:auto}
+    .tt-cell:last-child{border-bottom:0}
+    .tt-cell:empty{display:none}
+  }
+  @media(max-width:560px){
+    .grid-4,.grid-3{grid-template-columns:1fr}
+    .masonry{grid-template-columns:repeat(2,1fr)}
+    .info-cards{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr}
+    .values{grid-template-columns:1fr}
+    .hero-ctl .arrows{display:none}
+    .wrap{padding:0 20px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition-duration:.001s!important;scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header id="top">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Indomitus Martial Arts home">
+      <svg class="crest" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M32 4l4 8 8-3-2 9 9 2-7 6 4 8-9-2-2 9-5-7-5 7-2-9-9 2 4-8-7-6 9-2-2-9 8 3z"/>
+        <circle cx="32" cy="30" r="6"/>
+      </svg>
+      <span>
+        <span class="word">INDOMI<b>T</b>VS</span>
+        <small>Martial Academy</small>
+      </span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#top" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#membership">Membership</a></li>
+      <li><a href="#social">Social</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta"><a href="#contact" class="btn btn--solid">Book a Free Trial</a></div>
+    <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="slides" id="slides">
+    <div class="slide slide-1 is-active"><div class="motif"><svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M30 110V40M50 110V40M30 40h20M28 36h24M28 32h24l-8-22h-8z"/><path d="M150 110V40M170 110V40M150 40h20M148 36h24M148 32h24l-8-22h-8z"/><path d="M20 110h160"/><path d="M70 70h60M70 80h60"/></svg></div></div>
+    <div class="slide slide-2"><div class="motif"><svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="60" r="40"/><path d="M100 30v60M70 60h60M78 38l44 44M122 38l-44 44"/></svg></div></div>
+    <div class="slide slide-3"><div class="motif"><svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M100 18l45 16v28c0 26-22 40-45 50-23-10-45-24-45-50V34z"/><path d="M100 40v50M82 60h36"/></svg></div></div>
+    <div class="slide slide-4"><div class="motif"><svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 90l50-50 6 6M150 30l-50 50M60 40h30v30M140 80h-30V50"/></svg></div></div>
+    <div class="slide slide-5"><div class="motif"><svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M100 14c14 22 34 26 34 26-2 40-34 66-34 66S64 80 66 40c0 0 20-4 34-26z"/></svg></div></div>
+  </div>
+
+  <div class="wrap hero-inner">
+    <div class="motto reveal in">Disciplina · Honos · Excellentia</div>
+    <h1 class="reveal in" data-d="1">Forge Discipline. Build Strength. <span class="red">Become Indomitable.</span></h1>
+    <p class="reveal in" data-d="2">Train with purpose. Develop skill, confidence, resilience, and character inside a martial arts academy built upon discipline, honor, and excellence.</p>
+    <div class="hero-actions reveal in" data-d="3">
+      <a href="#membership" class="btn btn--solid btn--lg">Join Today</a>
+      <a href="#contact" class="btn btn--lg">Book a Free Trial</a>
+    </div>
+  </div>
+
+  <div class="hero-ctl">
+    <div class="wrap">
+      <div class="dots" id="dots"></div>
+      <div class="arrows">
+        <button id="prev" aria-label="Previous slide"><svg width="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button id="next" aria-label="Next slide"><svg width="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section class="section why" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Train Here</span>
+      <h2>An Academy, Not a Gym</h2>
+      <p>Every detail of our hall is built to forge the body, sharpen the mind, and temper the character. This is where ordinary people become extraordinary.</p>
+      <div class="ornament"><svg viewBox="0 0 120 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10h44M118 10H74"/><path d="M46 10c4-5 8-5 14 0-6 5-10 5-14 0zM74 10c-4-5-8-5-14 0 6 5 10 5 14 0z"/><circle cx="60" cy="10" r="2.5" fill="currentColor" stroke="none"/></svg></div>
+    </div>
+    <div class="grid-4">
+      <div class="feature reveal" data-d="1">
+        <div class="icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 4v5c0 5-3 7-7 9-4-2-7-4-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Expert Coaching</h3>
+        <p>World-class instructors with decades of competition and teaching mastery guiding every step.</p>
+      </div>
+      <div class="feature reveal" data-d="2">
+        <div class="icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M15 20c0-2 2-3.5 4-3.5"/></svg></div>
+        <h3>Brotherhood</h3>
+        <p>A disciplined community that holds the line beside you — training partners who become family.</p>
+      </div>
+      <div class="feature reveal" data-d="3">
+        <div class="icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 21h8M12 17v4M6 4h12v4a6 6 0 01-12 0zM6 6H3v2a3 3 0 003 3M18 6h3v2a3 3 0 01-3 3"/></svg></div>
+        <h3>Competition</h3>
+        <p>Battle-tested pathways from your first class to the podium, for those who answer the call.</p>
+      </div>
+      <div class="feature reveal" data-d="4">
+        <div class="icon-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8M21 7v4M21 7h-4"/></svg></div>
+        <h3>Personal Growth</h3>
+        <p>Relentless self-improvement on and off the mat — confidence, resilience, and discipline for life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROGRAMS ================= -->
+<section class="section programs" id="programs" style="background:linear-gradient(180deg,var(--obsidian),var(--black))">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Disciplines</span>
+      <h2>Programs Forged for Mastery</h2>
+      <p>Six paths, one standard of excellence. Choose your discipline and begin the work.</p>
+    </div>
+    <div class="grid-3">
+      <article class="prog reveal" data-d="1">
+        <div class="prog-img"><div class="ph p1"></div><span class="tag">Grappling</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="6" r="2.5"/><path d="M12 9v6M8 12l8 0M9 20l3-5 3 5"/></svg></div>
+        <div class="prog-body"><h3>Brazilian Jiu-Jitsu</h3><p>The art of leverage and control. Master the ground game through technique over strength.</p><a href="#contact" class="learn">Learn More →</a></div>
+      </article>
+      <article class="prog reveal" data-d="2">
+        <div class="prog-img"><div class="ph p2"></div><span class="tag">Striking</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 13a4 4 0 014-4h2V5a2 2 0 014 0v6a5 5 0 01-5 5H9a3 3 0 01-3-3z"/></svg></div>
+        <div class="prog-body"><h3>Muay Thai</h3><p>The art of eight limbs. Develop devastating power with fists, elbows, knees, and shins.</p><a href="#contact" class="learn">Learn More →</a></div>
+      </article>
+      <article class="prog reveal" data-d="3">
+        <div class="prog-img"><div class="ph p3"></div><span class="tag">Striking</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="9" r="4"/><circle cx="17" cy="13" r="3"/><path d="M5 9V6a2 2 0 014 0"/></svg></div>
+        <div class="prog-body"><h3>Boxing</h3><p>The sweet science. Sharpen footwork, defense, and precision in the noble pursuit of the ring.</p><a href="#contact" class="learn">Learn More →</a></div>
+      </article>
+      <article class="prog reveal" data-d="1">
+        <div class="prog-img"><div class="ph p4"></div><span class="tag">Complete</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20l8-8 8 8M12 12V4M8 8l4-4 4 4"/></svg></div>
+        <div class="prog-body"><h3>Mixed Martial Arts</h3><p>The complete warrior. Integrate striking, grappling, and strategy into one unified art.</p><a href="#contact" class="learn">Learn More →</a></div>
+      </article>
+      <article class="prog reveal" data-d="2">
+        <div class="prog-img"><div class="ph p5"></div><span class="tag">Ages 5–15</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="6" r="3"/><path d="M6 21v-3a6 6 0 0112 0v3"/></svg></div>
+        <div class="prog-body"><h3>Youth Programs</h3><p>Discipline, respect, and confidence for the next generation in a structured, safe environment.</p><a href="#contact" class="learn">Learn More →</a></div>
+      </article>
+      <article class="prog reveal" data-d="3">
+        <div class="prog-img"><div class="ph p6"></div><span class="tag">All Levels</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></div>
+        <div class="prog-body"><h3>Women's Programs</h3><p>Empowering, supportive classes focused on self-defense, strength, and unbreakable confidence.</p><a href="#contact" class="learn">Learn More →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCHEDULE ================= -->
+<section class="section schedule" id="schedule">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Weekly Order</span>
+      <h2>Train on Your Terms</h2>
+      <p>Morning and evening sessions, kids classes, competition training, and open mat. Filter to find your path.</p>
+    </div>
+    <div class="filters reveal" id="filters">
+      <button class="chip active" data-f="all">All Classes</button>
+      <button class="chip" data-f="bjj">Jiu-Jitsu</button>
+      <button class="chip" data-f="thai">Muay Thai</button>
+      <button class="chip" data-f="box">Boxing</button>
+      <button class="chip" data-f="mma">MMA</button>
+      <button class="chip" data-f="kids">Kids</button>
+    </div>
+    <div class="timetable reveal">
+      <div class="tt-row head">
+        <div></div><div>Monday</div><div>Tuesday</div><div>Wednesday</div><div>Thursday</div><div>Friday</div>
+      </div>
+      <div class="tt-row">
+        <div class="tt-time">06:30</div>
+        <div class="tt-cell"><div class="cls" data-c="bjj"><b>BJJ Fundamentals</b><span>Coach Aurelius</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="box"><b>Boxing</b><span>Coach Cassia</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="bjj"><b>BJJ Fundamentals</b><span>Coach Aurelius</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="thai"><b>Muay Thai</b><span>Coach Decimus</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="bjj"><b>Open Mat</b><span>All Levels</span></div></div>
+      </div>
+      <div class="tt-row">
+        <div class="tt-time">16:30</div>
+        <div class="tt-cell"><div class="cls" data-c="kids"><b>Youth Class</b><span>Ages 5–11</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="kids"><b>Youth Class</b><span>Ages 12–15</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="kids"><b>Youth Class</b><span>Ages 5–11</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="kids"><b>Youth Class</b><span>Ages 12–15</span></div></div>
+        <div class="tt-cell"></div>
+      </div>
+      <div class="tt-row">
+        <div class="tt-time">18:30</div>
+        <div class="tt-cell"><div class="cls" data-c="thai"><b>Muay Thai</b><span>Coach Decimus</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="bjj"><b>BJJ Advanced</b><span>Coach Aurelius</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="mma red"><b>MMA Sparring</b><span>Coach Maximus</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="box"><b>Boxing</b><span>Coach Cassia</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="thai"><b>Muay Thai</b><span>Coach Decimus</span></div></div>
+      </div>
+      <div class="tt-row">
+        <div class="tt-time">19:30</div>
+        <div class="tt-cell"><div class="cls" data-c="bjj"><b>BJJ All Levels</b><span>Coach Aurelius</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="mma red"><b>Competition Team</b><span>Invite Only</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="bjj"><b>BJJ All Levels</b><span>Coach Aurelius</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="mma red"><b>Competition Team</b><span>Invite Only</span></div></div>
+        <div class="tt-cell"><div class="cls" data-c="bjj"><b>Open Mat</b><span>All Levels</span></div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:44px" class="reveal"><a href="#contact" class="btn">View Full Schedule</a></div>
+  </div>
+</section>
+
+<!-- ================= MEMBERSHIP ================= -->
+<section class="section member" id="membership">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Join the Ranks</span>
+      <h2>Choose Your Path</h2>
+      <p>No contracts that trap you, only standards that elevate you. Every membership includes a free trial week.</p>
+    </div>
+    <div class="plans">
+      <div class="plan reveal" data-d="1">
+        <h3>Initiate</h3>
+        <p class="desc">For those beginning the journey</p>
+        <div class="price"><span class="amt">$89</span><span class="per">/ month</span></div>
+        <ul class="feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>2 classes per week</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Fundamentals programs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Open mat access</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>Competition team</li>
+          <li class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>Private coaching</li>
+        </ul>
+        <a href="#contact" class="btn">Become a Member</a>
+      </div>
+      <div class="plan featured reveal" data-d="2">
+        <span class="ribbon">Most Chosen</span>
+        <h3>Unlimited</h3>
+        <p class="desc">For the committed practitioner</p>
+        <div class="price"><span class="amt">$149</span><span class="per">/ month</span></div>
+        <ul class="feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Unlimited classes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>All disciplines included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Open mat & sparring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Competition team eligible</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Seminar discounts</li>
+        </ul>
+        <a href="#contact" class="btn btn--solid">Become a Member</a>
+      </div>
+      <div class="plan reveal" data-d="3">
+        <h3>Family</h3>
+        <p class="desc">For the household that trains together</p>
+        <div class="price"><span class="amt">$249</span><span class="per">/ month</span></div>
+        <ul class="feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Up to 4 family members</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Unlimited classes for all</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Youth & adult programs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Open mat & sparring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4 10-10"/></svg>Priority event access</li>
+        </ul>
+        <a href="#contact" class="btn">Become a Member</a>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--grey);font-size:.86rem;margin-top:34px" class="reveal">Drop-ins · 10-class punch cards · Student & corporate discounts also available. Ask at the front desk.</p>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section testi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">From the Ranks</span>
+      <h2>Words of the Trained</h2>
+    </div>
+    <div class="grid-2">
+      <div class="quote reveal" data-d="1">
+        <span class="mark">&ldquo;</span>
+        <p>I walked in unsure of myself and walked out two years later with a discipline I carry into every part of my life. This place rebuilds you from the ground up.</p>
+        <div class="who"><div class="avatar">M</div><div><b>Marcus T.</b><span>Member · 2 Years</span></div></div>
+      </div>
+      <div class="quote reveal" data-d="2">
+        <span class="mark">&ldquo;</span>
+        <p>The coaching is world-class and the standard is uncompromising — but the respect runs both ways. I've never trained anywhere that felt this much like a brotherhood.</p>
+        <div class="who"><div class="avatar">L</div><div><b>Livia R.</b><span>Competitor · Blue Belt</span></div></div>
+      </div>
+      <div class="quote reveal" data-d="3">
+        <span class="mark">&ldquo;</span>
+        <p>My son was timid and unfocused. The youth program gave him confidence, respect, and a fire I didn't know he had. Worth every single minute.</p>
+        <div class="who"><div class="avatar">D</div><div><b>Darius K.</b><span>Parent · Youth Program</span></div></div>
+      </div>
+      <div class="quote reveal" data-d="4">
+        <span class="mark">&ldquo;</span>
+        <p>From my first free trial I knew this wasn't a gym. It's a forge. The hardest and most rewarding thing I've ever committed to.</p>
+        <div class="who"><div class="avatar">S</div><div><b>Selene V.</b><span>Member · 1 Year</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="eyebrow">Our Creed</span>
+        <h2 style="font-size:clamp(1.9rem,4vw,3rem);text-transform:uppercase;margin-bottom:26px">Built on Honor, Tempered by Fire</h2>
+        <p>We did not build a gym. We built an order.</p>
+        <p style="font-family:var(--body);font-size:1rem;font-style:normal;color:var(--grey)">Founded by lifelong martial artists who believed the modern world had forgotten what training was truly for, Indomitus exists to forge complete people — not just better fighters. Every class is a small act of self-mastery. Every belt, a record of perseverance. Every member, a guardian of the standard.</p>
+        <p style="font-family:var(--body);font-size:1rem;font-style:normal;color:var(--grey)">We hold the line on discipline because the world will not. We demand excellence because you are capable of it. And we do it together, because no one becomes indomitable alone.</p>
+      </div>
+      <div class="stats reveal" data-d="2">
+        <div class="stat"><div class="num">12</div><div class="lab">Years Forging Fighters</div></div>
+        <div class="stat"><div class="num">800+</div><div class="lab">Active Members</div></div>
+        <div class="stat"><div class="num">40+</div><div class="lab">Podium Finishes</div></div>
+        <div class="stat"><div class="num">6</div><div class="lab">Disciplines Taught</div></div>
+      </div>
+    </div>
+    <div class="values">
+      <div class="value reveal" data-d="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 4v5c0 5-3 7-7 9-4-2-7-4-7-9V7z"/></svg><b>Honor</b><span>Do right when no one watches</span></div>
+      <div class="value reveal" data-d="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l8-16 8 16M8 16h8"/></svg><b>Discipline</b><span>Show up, especially when it's hard</span></div>
+      <div class="value reveal" data-d="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l5-5 4 4 8-9M19 7v4M19 7h-4"/></svg><b>Perseverance</b><span>Rise every time you fall</span></div>
+      <div class="value reveal" data-d="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><b>Respect</b><span>Honor every soul on the mat</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COACHES ================= -->
+<section class="section coaches">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Praetorians</span>
+      <h2>Meet the Coaches</h2>
+      <p>Decorated competitors and devoted teachers. Tap a profile to read their story.</p>
+    </div>
+    <div class="grid-3">
+      <article class="coach reveal" data-d="1">
+        <div class="coach-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg></div>
+        <div class="coach-body">
+          <h3>Maximus Vale</h3>
+          <div class="role">Head Coach · MMA</div>
+          <div class="coach-bio"><p>A national MMA champion with 18 years on the mat, Maximus founded Indomitus on a single principle: relentless standards build relentless people. He leads the competition team and head-coaches the advanced program.</p></div>
+          <button class="coach-toggle">Read Bio +</button>
+        </div>
+      </article>
+      <article class="coach reveal" data-d="2">
+        <div class="coach-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg></div>
+        <div class="coach-body">
+          <h3>Aurelius Crane</h3>
+          <div class="role">Lead Coach · Jiu-Jitsu</div>
+          <div class="coach-bio"><p>A third-degree black belt under a legendary lineage, Aurelius is renowned for his patient, technical teaching. He has guided dozens of students from white belt to the podium across three continents.</p></div>
+          <button class="coach-toggle">Read Bio +</button>
+        </div>
+      </article>
+      <article class="coach reveal" data-d="3">
+        <div class="coach-img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg></div>
+        <div class="coach-body">
+          <h3>Cassia Drake</h3>
+          <div class="role">Lead Coach · Boxing & Striking</div>
+          <div class="coach-bio"><p>A former amateur boxing champion, Cassia brings precision and ferocity to every striking session. She leads the women's program and is fiercely committed to building unshakeable confidence.</p></div>
+          <button class="coach-toggle">Read Bio +</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOCIAL ================= -->
+<section class="section social" id="social">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Legion Online</span>
+      <h2>Follow the Journey</h2>
+      <p>Competition highlights, student victories, and the daily grind of the hall.</p>
+    </div>
+    <div class="masonry reveal">
+      <div class="tile big t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="9 7 17 12 9 17 9 7"/></svg></div>
+      <div class="tile t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+      <div class="tile t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="tile t4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></div>
+      <div class="tile t5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="tile t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="tile t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="9 7 17 12 9 17 9 7"/></svg></div>
+    </div>
+    <div class="socials reveal">
+      <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+      <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3l.5-3H14V4.5c0-1 .5-1.5 1.8-1.5H17V.5C16.5.3 15.4 0 14.4 0 11.9 0 11 1.5 11 3.7V6H8v3h3v9h3z"/></svg>Facebook</a>
+      <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg>YouTube</a>
+      <a href="#" class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 3v9a4 4 0 11-3-3.9V6.5A6 6 0 0019 8V5a3 3 0 01-2-2z"/></svg>TikTok</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Before You Begin</span>
+      <h2>Common Questions</h2>
+    </div>
+    <div class="acc reveal" id="acc">
+      <div class="acc-item"><button class="acc-q">Do I need experience to start? <span class="pm"></span></button><div class="acc-a"><p>None at all. Most members walk in with zero background. Our fundamentals classes are built specifically for first-timers, and a coach will guide you through everything from your very first session.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What should I bring to my first class? <span class="pm"></span></button><div class="acc-a"><p>Just comfortable athletic clothing, a water bottle, and an open mind. We provide loaner equipment for your trial, and our front desk will help you with anything you need for grappling or striking sessions.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Is the free trial really free? <span class="pm"></span></button><div class="acc-a"><p>Yes — your first week is on us, with no card required and no obligation to continue. We want you to feel the academy before you commit to it.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What is your cancellation policy? <span class="pm"></span></button><div class="acc-a"><p>Memberships are month-to-month with no long-term contracts. Cancel any time with 30 days' written notice. No penalties, no traps — only standards that earn your loyalty.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Do you offer kids and family options? <span class="pm"></span></button><div class="acc-a"><p>Absolutely. We run dedicated youth classes for ages 5–15 and a Family membership covering up to four household members under one plan. Student and corporate discounts are also available.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="reveal">Start Your Journey Today</h2>
+    <p class="reveal" data-d="1">The first step is the hardest — and the only one that matters right now. Walk through our doors and begin.</p>
+    <a href="#contact" class="btn btn--solid btn--lg reveal" data-d="2">Claim Your Free Trial Class</a>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Answer the Call</span>
+      <h2>Book Your First Class</h2>
+      <p>Send us a message and a coach will reach out to schedule your free trial. The forge is open.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="info-cards">
+          <div class="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><b>Phone</b><span>(555) 248-1199</span></div>
+          <div class="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><b>Email</b><span>train@indomitus.co</span></div>
+          <div class="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-7-7-12a7 7 0 0114 0c0 5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Address</b><span>114 Forge Street, Calgary, AB</span></div>
+          <div class="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><b>Hours</b><span>Mon–Fri 6am–9pm · Sat 8am–2pm</span></div>
+        </div>
+        <div class="map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-7-7-12a7 7 0 0114 0c0 5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Map placeholder — embed Google Maps here</span></div>
+      </div>
+      <form class="reveal" data-d="1" id="contactForm">
+        <div class="form-field"><label for="cName">Name</label><input id="cName" type="text" placeholder="Your full name" required></div>
+        <div class="form-field"><label for="cEmail">Email</label><input id="cEmail" type="email" placeholder="you@email.com" required></div>
+        <div class="form-field"><label for="cPhone">Phone</label><input id="cPhone" type="tel" placeholder="(555) 000-0000"></div>
+        <div class="form-field"><label for="cMsg">Message</label><textarea id="cMsg" placeholder="Tell us what you'd like to train and when you can start."></textarea></div>
+        <button type="submit" class="btn btn--solid btn--lg" style="width:100%">Send & Book My Trial</button>
+        <p id="formNote" style="display:none;color:var(--gold);font-size:.85rem;margin-top:16px;text-align:center;font-family:var(--display);letter-spacing:.1em">Message ready — connect this form to your booking system to go live.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand">
+          <svg class="crest" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 4l4 8 8-3-2 9 9 2-7 6 4 8-9-2-2 9-5-7-5 7-2-9-9 2 4-8-7-6 9-2-2-9 8 3z"/><circle cx="32" cy="30" r="6"/></svg>
+          <span><span class="word">INDOMI<b>T</b>VS</span><small>Martial Academy</small></span>
+        </a>
+        <p>A martial arts academy built upon discipline, honor, and uncompromising excellence. This isn't just a gym — it's where people transform themselves.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3l.5-3H14V4.5c0-1 .5-1.5 1.8-1.5H17V.5C16.5.3 15.4 0 14.4 0 11.9 0 11 1.5 11 3.7V6H8v3h3v9h3z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 3v9a4 4 0 11-3-3.9V6.5A6 6 0 0019 8V5a3 3 0 01-2-2z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Navigate</h4>
+        <a href="#top">Home</a><a href="#about">About</a><a href="#programs">Programs</a>
+        <a href="#schedule">Schedule</a><a href="#membership">Membership</a><a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col news">
+        <h4>Join the Dispatch</h4>
+        <p>Training tips, event invites, and academy news. No spam — only signal.</p>
+        <form class="news-form" id="newsForm"><input type="email" placeholder="Your email address" aria-label="Email" required><button type="submit">Enlist</button></form>
+        <div class="ornament" style="justify-content:flex-start;margin-top:30px"><svg viewBox="0 0 120 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10h44M118 10H74"/><path d="M46 10c4-5 8-5 14 0-6 5-10 5-14 0zM74 10c-4-5-8-5-14 0 6 5 10 5 14 0z"/><circle cx="60" cy="10" r="2.5" fill="currentColor" stroke="none"/></svg></div>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 Indomitus Martial Academy. All rights reserved.</span>
+      <span class="motto">Disciplina · Honos · Excellentia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating mobile cta -->
+<div class="float-cta"><a href="#contact" class="btn btn--solid">Book Now — Free Trial</a></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- sticky nav ---- */
+  var header=document.getElementById('top');
+  var onScroll=function(){ header.classList.toggle('scrolled', window.scrollY>40); };
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ---- mobile menu ---- */
+  var burger=document.getElementById('burger');
+  burger.addEventListener('click',function(){ document.body.classList.toggle('menu-open'); });
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click',function(){ document.body.classList.remove('menu-open'); });
+  });
+
+  /* ---- hero carousel ---- */
+  var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dotsWrap=document.getElementById('dots');
+  var idx=0, timer;
+  slides.forEach(function(_,i){
+    var b=document.createElement('button');
+    if(i===0) b.className='active';
+    b.setAttribute('aria-label','Go to slide '+(i+1));
+    b.addEventListener('click',function(){ go(i); reset(); });
+    dotsWrap.appendChild(b);
+  });
+  var dots=Array.prototype.slice.call(dotsWrap.children);
+  function go(n){
+    slides[idx].classList.remove('is-active');
+    dots[idx].classList.remove('active');
+    idx=(n+slides.length)%slides.length;
+    slides[idx].classList.add('is-active');
+    dots[idx].classList.add('active');
+  }
+  function next(){ go(idx+1); }
+  function prev(){ go(idx-1); }
+  function reset(){ clearInterval(timer); timer=setInterval(next,6000); }
+  document.getElementById('next').addEventListener('click',function(){ next(); reset(); });
+  document.getElementById('prev').addEventListener('click',function(){ prev(); reset(); });
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){ reset(); }
+
+  /* ---- reveal on scroll ---- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.16});
+  document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io.observe(el); });
+
+  /* ---- active nav highlight ---- */
+  var navMap={};
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    var id=a.getAttribute('href').replace('#',''); if(id) navMap[id]=a;
+  });
+  var sections=['about','programs','schedule','membership','social','contact']
+    .map(function(id){return document.getElementById(id);}).filter(Boolean);
+  var navIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        Object.keys(navMap).forEach(function(k){ navMap[k].classList.remove('active'); });
+        var link=navMap[e.target.id]; if(link) link.classList.add('active');
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(function(s){ navIO.observe(s); });
+
+  /* ---- schedule filter ---- */
+  var chips=document.querySelectorAll('#filters .chip');
+  var classes=document.querySelectorAll('.timetable .cls');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.classList.remove('active');}); c.classList.add('active');
+      var f=c.getAttribute('data-f');
+      classes.forEach(function(cl){
+        var match = f==='all' || (cl.getAttribute('data-c')||'').indexOf(f)>-1;
+        cl.style.opacity = match? '1':'.16';
+        cl.style.filter  = match? 'none':'grayscale(1)';
+      });
+    });
+  });
+
+  /* ---- faq accordion ---- */
+  document.querySelectorAll('#acc .acc-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var item=q.parentElement, a=item.querySelector('.acc-a');
+      var open=item.classList.contains('open');
+      document.querySelectorAll('#acc .acc-item').forEach(function(it){
+        it.classList.remove('open'); it.querySelector('.acc-a').style.maxHeight=null;
+      });
+      if(!open){ item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
+    });
+  });
+
+  /* ---- coach bio expand ---- */
+  document.querySelectorAll('.coach-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('.coach');
+      var open=card.classList.toggle('open');
+      btn.textContent= open? 'Hide Bio −':'Read Bio +';
+    });
+  });
+
+  /* ---- forms (front-end only) ---- */
+  var cf=document.getElementById('contactForm');
+  if(cf) cf.addEventListener('submit',function(e){ e.preventDefault(); document.getElementById('formNote').style.display='block'; });
+  var nf=document.getElementById('newsForm');
+  if(nf) nf.addEventListener('submit',function(e){ e.preventDefault(); var b=nf.querySelector('button'); b.textContent='Enlisted'; });
+})();
+</script>
+</body>
+</html>
