@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kieran Keddle Academy — Muay Thai, Kickboxing & MMA · Alberta</title>
-<meta name="description" content="Train Muay Thai, kickboxing and MMA under a 3-time world champion in Bragg Creek, Cochrane and Okotoks, Alberta. Your first class is free.">
+<title>Kieran Keddle Academy — Muay Thai, Boxing & MMA · Alberta</title>
+<meta name="description" content="Train Muay Thai, boxing and MMA under a 3-time world champion in Bragg Creek, Cochrane and Okotoks, Alberta. Your first class is free.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow+Semi+Condensed:wght@500;600&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -185,7 +185,7 @@
   .loc-panel{display:none}
   .loc-panel.active{display:block}
   .timetable{border:1px solid var(--line);border-radius:3px;overflow:hidden;overflow-x:auto}
-  .tt-row{display:grid;grid-template-columns:90px repeat(6,1fr);border-bottom:1px solid var(--line)}
+  .tt-row{display:grid;grid-template-columns:var(--tt-cols,90px repeat(4,1fr));border-bottom:1px solid var(--line)}
   .tt-row:last-child{border-bottom:0}
   .tt-row.head{background:rgba(46,107,221,.08)}
   .tt-row.head div{
@@ -217,13 +217,11 @@
   /* booking links below timetable */
   .sched-footer{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px}
 
-  /* responsive schedule */
   @media(max-width:900px){
-    .tt-row{grid-template-columns:72px repeat(6,minmax(90px,1fr));min-width:620px}
+    .tt-row{--tt-cols:72px repeat(var(--day-cols,4),minmax(90px,1fr));min-width:500px}
   }
   @media(max-width:680px){
     .timetable{font-size:.9em}
-    .tt-row{grid-template-columns:64px repeat(6,minmax(80px,1fr));min-width:540px}
   }
 
   /* ---- coaches ---- */
@@ -374,7 +372,7 @@
   <div class="wrap hero-inner">
     <p class="eyebrow reveal">Over 20 World Champions Created</p>
     <h1 class="reveal">Where Champions<br><span class="accent">Are Made</span></h1>
-    <p class="sub reveal">Muay Thai, kickboxing and MMA under a 3-time world champion — for fighters, for fitness, for everyone. <b>Your first class is free.</b></p>
+    <p class="sub reveal">Muay Thai, boxing and MMA under a 3-time world champion — for fighters, for fitness, for everyone. <b>Your first class is free.</b></p>
     <div class="hero-actions reveal">
       <a href="https://lnk.bio/KKACADEMY" target="_blank" rel="noopener" class="btn btn-primary">Claim Your Free Class</a>
       <a href="#schedule" class="btn btn-ghost">View the Schedule</a>
@@ -441,7 +439,7 @@
     </div>
     <div class="disc-grid">
       <div class="disc reveal"><div class="n">01</div><h3>Muay Thai</h3><p>The art of eight limbs, taught by a world champion. Technical striking from fundamentals to fight camp.</p></div>
-      <div class="disc reveal"><div class="n">02</div><h3>Kickboxing</h3><p>Sharp, explosive striking for competition or conditioning — the discipline that put Idris Elba in the ring.</p></div>
+      <div class="disc reveal"><div class="n">02</div><h3>Boxing</h3><p>Sharp, explosive striking for competition or conditioning — the discipline that put Idris Elba in the ring.</p></div>
       <div class="disc reveal"><div class="n">03</div><h3>MMA</h3><p>Blend striking, wrestling and grappling with coaches who've cornered pros in the UFC and ONE.</p></div>
       <div class="disc reveal"><div class="n">04</div><h3>Brazilian Jiu-Jitsu</h3><p>Beginner-friendly fundamentals through advanced rolls, led by belted competitors who love teaching.</p></div>
     </div>
@@ -469,133 +467,187 @@
     <div class="sched-filters reveal" id="schedFilters">
       <button class="sched-chip active" data-f="all">All Classes</button>
       <button class="sched-chip" data-f="muaythai">Muay Thai</button>
-      <button class="sched-chip" data-f="kickboxing">Kickboxing</button>
+      <button class="sched-chip" data-f="boxing">Boxing</button>
       <button class="sched-chip" data-f="mma">MMA</button>
       <button class="sched-chip" data-f="bjj">BJJ</button>
+      <button class="sched-chip" data-f="hiit">HIIT</button>
+      <button class="sched-chip" data-f="youth">Youth</button>
     </div>
 
     <!-- BRAGG CREEK PANEL -->
     <div class="loc-panel active reveal" id="panel-bragg">
-      <div class="timetable">
+      <div class="timetable" style="--tt-cols:90px repeat(4,1fr)">
         <div class="tt-row head">
-          <div></div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+          <div></div><div>Monday</div><div>Tuesday</div><div>Wednesday</div><div>Saturday</div>
         </div>
+        <!-- 12pm row -->
         <div class="tt-row">
-          <div class="tt-time">06:00</div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
+          <div class="tt-time">12:00 pm</div>
           <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-        </div>
-        <div class="tt-row">
-          <div class="tt-time">09:00</div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card kickboxing gold" data-c="kickboxing"><b>Kickboxing</b><span>Open Mat</span></div></div>
-        </div>
-        <div class="tt-row">
-          <div class="tt-time">17:30</div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>Fundamentals</span></div></div>
-          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>Striking Focus</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>Fundamentals</span></div></div>
-          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>Grappling Focus</span></div></div>
-          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card hiit" data-c="hiit"><b>HIIT</b><span>Adults</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
           <div class="tt-cell"></div>
         </div>
+        <!-- 4:30pm row -->
         <div class="tt-row">
-          <div class="tt-time">19:00</div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Coach Kieran</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Coach Kieran</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card muaythai gold" data-c="muaythai"><b>Muay Thai</b><span>Sparring</span></div></div>
+          <div class="tt-time">4:30 pm</div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
           <div class="tt-cell"></div>
         </div>
+        <!-- 5:30pm row -->
         <div class="tt-row">
-          <div class="tt-time">20:00</div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>Advanced</span></div></div>
+          <div class="tt-time">5:30 pm</div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (ages 10–14)</span></div></div>
           <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>Advanced</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (ages 10–14)</span></div></div>
           <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>Coach Barry</span></div></div>
+        </div>
+        <!-- 6:30pm row -->
+        <div class="tt-row">
+          <div class="tt-time">6:30 pm</div>
+          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
           <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
+          <div class="tt-cell"></div>
+        </div>
+        <!-- 10am Saturday row -->
+        <div class="tt-row">
+          <div class="tt-time">10:00 am</div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card muaythai gold" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
         </div>
       </div>
     </div>
 
     <!-- COCHRANE PANEL -->
     <div class="loc-panel reveal" id="panel-cochrane">
-      <div class="timetable">
+      <div class="timetable" style="--tt-cols:90px repeat(6,1fr)">
         <div class="tt-row head">
-          <div></div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+          <div></div><div>Monday</div><div>Tuesday</div><div>Wednesday</div><div>Thursday</div><div>Saturday</div><div>Sunday</div>
         </div>
+        <!-- 5:30pm row -->
         <div class="tt-row">
-          <div class="tt-time">09:00</div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card kickboxing gold" data-c="kickboxing"><b>Kickboxing</b><span>Open Mat</span></div></div>
-        </div>
-        <div class="tt-row">
-          <div class="tt-time">17:30</div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>Coach Gary</span></div></div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>Coach Gary</span></div></div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>All Levels</span></div></div>
+          <div class="tt-time">5:30 pm</div>
+          <div class="tt-cell"><div class="cls-card boxing youth" data-c="boxing youth"><b>Boxing</b><span>Junior (8–14)</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
+          <div class="tt-cell"><div class="cls-card boxing youth" data-c="boxing youth"><b>Boxing</b><span>Junior (8–14)</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
           <div class="tt-cell"></div>
           <div class="tt-cell"></div>
         </div>
+        <!-- 5:30 / teens -->
         <div class="tt-row">
-          <div class="tt-time">19:00</div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Coach Wes</span></div></div>
-          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>Coach Wes</span></div></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Coach Wes</span></div></div>
-          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj gold" data-c="bjj"><b>BJJ</b><span>Open Mat</span></div></div>
+          <div class="tt-time">5:30 pm</div>
           <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (10–14)</span></div></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (10–14)</span></div></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+        </div>
+        <!-- 6:30pm row -->
+        <div class="tt-row">
+          <div class="tt-time">6:30 pm</div>
+          <div class="tt-cell"><div class="cls-card boxing" data-c="boxing"><b>Boxing</b><span>Adults</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
+          <div class="tt-cell"><div class="cls-card boxing" data-c="boxing"><b>Boxing</b><span>Adults</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+        </div>
+        <!-- 7:30pm row -->
+        <div class="tt-row">
+          <div class="tt-time">7:30 pm</div>
+          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>Adults</span></div></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>Adults</span></div></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+        </div>
+        <!-- Saturday / Sunday -->
+        <div class="tt-row">
+          <div class="tt-time">9:00 am</div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card boxing youth gold" data-c="boxing youth"><b>Boxing</b><span>Juniors (8–14)</span></div></div>
+          <div class="tt-cell"></div>
+        </div>
+        <div class="tt-row">
+          <div class="tt-time">10:00 am</div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card muaythai gold" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
+          <div class="tt-cell"></div>
+        </div>
+        <div class="tt-row">
+          <div class="tt-time">11:00 am</div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card bjj gold" data-c="bjj"><b>BJJ</b><span>Adults</span></div></div>
+          <div class="tt-cell"></div>
+        </div>
+        <div class="tt-row">
+          <div class="tt-time">12:00 pm</div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card bjj gold" data-c="bjj"><b>BJJ</b><span>Adults (12–2pm)</span></div></div>
         </div>
       </div>
     </div>
 
     <!-- OKOTOKS PANEL -->
     <div class="loc-panel reveal" id="panel-okotoks">
-      <div class="timetable">
+      <div class="timetable" style="--tt-cols:90px repeat(3,1fr)">
         <div class="tt-row head">
-          <div></div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+          <div></div><div>Monday</div><div>Wednesday</div><div>Saturday</div>
         </div>
+        <!-- 4:30pm row -->
         <div class="tt-row">
-          <div class="tt-time">09:00</div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card kickboxing gold" data-c="kickboxing"><b>Kickboxing</b><span>Open Mat</span></div></div>
-        </div>
-        <div class="tt-row">
-          <div class="tt-time">18:00</div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>Coach Abraham</span></div></div>
-          <div class="tt-cell"><div class="cls-card kickboxing" data-c="kickboxing"><b>Kickboxing</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj" data-c="bjj"><b>BJJ</b><span>Coach Abraham</span></div></div>
-          <div class="tt-cell"></div>
+          <div class="tt-time">4:30 pm</div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
           <div class="tt-cell"></div>
         </div>
+        <!-- 5:30pm row -->
         <div class="tt-row">
-          <div class="tt-time">19:30</div>
-          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Advanced</span></div></div>
-          <div class="tt-cell"><div class="cls-card mma" data-c="mma"><b>MMA</b><span>All Levels</span></div></div>
-          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Advanced</span></div></div>
-          <div class="tt-cell"><div class="cls-card bjj gold" data-c="bjj"><b>BJJ</b><span>Open Mat</span></div></div>
+          <div class="tt-time">5:30 pm</div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (ages 10–14)</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (ages 10–14)</span></div></div>
           <div class="tt-cell"></div>
+        </div>
+        <!-- 6:30pm row -->
+        <div class="tt-row">
+          <div class="tt-time">6:30 pm</div>
+          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
+          <div class="tt-cell"><div class="cls-card muaythai" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
+          <div class="tt-cell"></div>
+        </div>
+        <!-- Saturday -->
+        <div class="tt-row">
+          <div class="tt-time">9:00 am</div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card boxing gold" data-c="boxing"><b>Boxing</b><span>Adults</span></div></div>
+        </div>
+        <div class="tt-row">
+          <div class="tt-time">10:00 am</div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card muaythai gold" data-c="muaythai"><b>Muay Thai</b><span>Adults</span></div></div>
         </div>
       </div>
     </div>
@@ -637,7 +689,7 @@
         <div class="body">
           <span class="role">Coach · Striking &amp; MMA</span>
           <h3>Barry McDonald</h3>
-          <p>A lifetime in martial arts across kickboxing, Muay Thai, boxing, judo, BJJ, wrestling and MMA.</p>
+          <p>A lifetime in martial arts across boxing, Muay Thai, boxing, judo, BJJ, wrestling and MMA.</p>
           <p class="extra">Barry has developed world, North American and national champions, and trained everyone from police and military to pro fighters and total beginners. His philosophy: everyone's welcome, no ego, no excuses — just real results.</p>
           <button class="more">Read more +</button>
         </div>
@@ -648,7 +700,7 @@
         <div class="body">
           <span class="role">Coach · MMA &amp; Striking</span>
           <h3>Wes Kemp</h3>
-          <p>Over 20 years in martial arts with a BJJ foundation and a well-rounded boxing, kickboxing and MMA game.</p>
+          <p>Over 20 years in martial arts with a BJJ foundation and a well-rounded boxing, boxing and MMA game.</p>
           <p class="extra">A core member of Canada's Shaved Bears Pro Team from 2015–2022, Wes trained daily alongside elite athletes and is known for technical precision, high fight IQ and developing strikers through detailed pad work.</p>
           <button class="more">Read more +</button>
         </div>
@@ -670,7 +722,7 @@
         <div class="body">
           <span class="role">Coach · Multidiscipline</span>
           <h3>Abraham Kilian</h3>
-          <p>Nearly two decades coaching, representing Team Canada in kickboxing and karate, and a BJJ brown belt champion.</p>
+          <p>Nearly two decades coaching, representing Team Canada in boxing and karate, and a BJJ brown belt champion.</p>
           <p class="extra">A Master's in Law and training in sport psychology let Abrie coach beyond technique. Between 2021–2024 he developed 13 Canadian champions, including a world No.2 in BJJ — building resilient, focused athletes on and off the mat.</p>
           <button class="more">Read more +</button>
         </div>
@@ -733,12 +785,12 @@
 <section class="section idris">
   <div class="wrap idris-grid">
     <div class="video reveal">
-      <iframe src="https://www.youtube.com/embed/d3PRdj_aiec?rel=0" title="Kieran Keddle trains Idris Elba" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/d3PRdj_aiec?rel=0&enablejsapi=1" title="Kieran Keddle trains Idris Elba" allowfullscreen></iframe>
     </div>
     <div class="reveal">
       <p class="eyebrow">As Seen On Discovery</p>
       <h2>Watch Kieran Train Idris Elba</h2>
-      <p>Kieran coached actor Idris Elba to a winning professional kickboxing debut at York Hall — a journey documented in the Discovery Channel series <em>Idris Elba: Fighter</em>. The same elite coaching is on the mat at every KK Academy.</p>
+      <p>Kieran coached actor Idris Elba to a winning professional boxing debut at York Hall — a journey documented in the Discovery Channel series <em>Idris Elba: Fighter</em>. The same elite coaching is on the mat at every KK Academy.</p>
     </div>
   </div>
 </section>
@@ -769,7 +821,7 @@
           <span class="kk">KK</span>
           <span>Kieran Keddle<small>Academy · Alberta</small></span>
         </div>
-        <p>World-class Muay Thai, kickboxing and MMA in a supportive, state-of-the-art environment. Everyone's welcome — no ego, no excuses.</p>
+        <p>World-class Muay Thai, boxing and MMA in a supportive, state-of-the-art environment. Everyone's welcome — no ego, no excuses.</p>
         <div class="foot-social">
           <a href="https://www.instagram.com/kierankeddleacademy/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
         </div>
@@ -842,7 +894,7 @@
       chip.classList.add('active');
       const f = chip.dataset.f;
       document.querySelectorAll('.loc-panel.active .cls-card').forEach(card => {
-        const match = f === 'all' || (card.dataset.c || '').indexOf(f) > -1;
+        const match = f === 'all' || (card.dataset.c || '').split(' ').indexOf(f) > -1;
         card.style.opacity = match ? '1' : '.18';
         card.style.filter = match ? 'none' : 'grayscale(1)';
       });
