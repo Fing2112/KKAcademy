@@ -47,6 +47,7 @@
   .section-head{max-width:720px;margin-bottom:56px}
   .section-head h2{font-size:clamp(2.4rem,6vw,4rem);margin:14px 0 0}
   .section-head .lead{color:var(--muted);margin-top:18px;font-size:1.1rem;max-width:600px}
+  .section-head p.lead{color:var(--muted);margin-top:18px;font-size:1.1rem}
 
   /* ---- buttons ---- */
   .btn{
@@ -70,7 +71,7 @@
     transition:background .3s ease, border-color .3s ease, padding .3s ease;
     border-bottom:1px solid transparent;padding:20px 0;
   }
-  header.nav.scrolled{background:rgba(21,16,14,.92);backdrop-filter:blur(10px);border-color:var(--line);padding:12px 0}
+  header.nav.scrolled{background:rgba(10,22,40,.96);backdrop-filter:blur(10px);border-color:var(--line);padding:12px 0}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
   .brand{display:flex;align-items:center;gap:12px}
   .brand img{height:38px;width:auto;display:block}
@@ -87,7 +88,7 @@
   .burger span{display:block;height:2px;width:26px;background:var(--bone);transition:.3s}
 
   /* ---- hero ---- */
-  .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding-top:120px;padding-bottom:60px;overflow:hidden;
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding-top:120px;padding-bottom:80px;overflow:hidden;
     background:var(--ink);}
   .hero-bg{position:absolute;inset:0;z-index:0}
   .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.32;filter:grayscale(.3) contrast(1.05)}
@@ -96,11 +97,11 @@
       radial-gradient(120% 90% at 75% 10%, rgba(46,107,221,.30), transparent 55%),
       linear-gradient(180deg, rgba(10,22,40,.45) 0%, rgba(10,22,40,.72) 60%, var(--ink) 100%);
   }
-  .hero-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-  .hero-text{max-width:560px}
-  .hero h1{font-size:clamp(2.6rem,5.5vw,6rem);margin:22px 0 0}
+  .hero-inner{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .hero-text{width:100%}
+  .hero h1{font-size:clamp(2.8rem,5.5vw,6rem);margin:22px 0 0}
   .hero h1 .accent{color:var(--gold);-webkit-text-stroke:0}
-  .hero .sub{margin:26px 0 0;font-size:1.15rem;color:var(--bone);line-height:1.5}
+  .hero .sub{margin:26px 0 0;font-size:1.15rem;color:var(--bone);line-height:1.5;max-width:480px}
   .hero .sub b{color:var(--gold);font-weight:600}
   .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
   .loc-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
@@ -110,7 +111,6 @@
     border:1px solid var(--line);padding:8px 16px;border-radius:30px;
   }
   .loc-chips span b{color:var(--bone);font-weight:600}
-  /* hero right carousel panel — see carousel section below */
   .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
     font-family:"Barlow Semi Condensed";letter-spacing:.2em;font-size:.68rem;color:var(--muted);text-transform:uppercase;
     display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -158,6 +158,7 @@
   .schedule{background:var(--ink-2);border-block:1px solid var(--line)}
   .schedule .section-head{max-width:720px;margin:0 auto 48px;text-align:center}
   .schedule .section-head h2{font-size:clamp(2.4rem,6vw,4rem);margin:14px 0 0}
+  .schedule .section-head p{color:var(--muted);margin-top:18px;font-size:1.1rem}
 
   /* location tabs */
   .loc-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
@@ -283,7 +284,7 @@
   .app-badges b{font-size:1.05rem;line-height:1}
 
   /* ---- footer ---- */
-  footer{background:#0F0B0A;border-top:1px solid var(--line);padding:72px 0 32px}
+  footer{background:#060f1c;border-top:1px solid var(--line);padding:72px 0 32px}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
   .foot-brand .brand{margin-bottom:18px}
   .foot-brand p{color:var(--muted);font-size:.95rem;max-width:320px}
@@ -298,7 +299,7 @@
   .foot-bottom a:hover{color:var(--gold)}
 
   /* ---- mobile menu ---- */
-  .mobile-menu{position:fixed;inset:0;z-index:99;background:rgba(15,11,10,.98);backdrop-filter:blur(8px);
+  .mobile-menu{position:fixed;inset:0;z-index:99;background:rgba(10,22,40,.99);backdrop-filter:blur(8px);
     display:flex;flex-direction:column;justify-content:center;align-items:center;gap:30px;
     transform:translateX(100%);transition:transform .35s ease;}
   .mobile-menu.open{transform:translateX(0)}
@@ -316,6 +317,15 @@
     .coach-grid,.loc-grid,.disc-grid{grid-template-columns:repeat(2,1fr)}
     .tape-grid{grid-template-columns:repeat(2,1fr);gap:30px 0}
     .tape-cell:nth-child(3)::before{display:none}
+    .hero-inner{grid-template-columns:1fr 1fr;gap:36px}
+  }
+  @media(max-width:860px){
+    .hero-inner{grid-template-columns:1fr;gap:36px}
+    .hero-carousel-wrap{aspect-ratio:16/9;width:100%;max-width:600px;margin:0 auto}
+    .hero-text{text-align:center}
+    .hero .sub{max-width:100%}
+    .hero-actions{justify-content:center}
+    .loc-chips{justify-content:center}
   }
   @media(max-width:680px){
     .section{padding:80px 0}
@@ -326,7 +336,9 @@
     .tape-cell{padding-block:18px;border-top:1px solid var(--line)}
     .sched-footer{flex-direction:column;align-items:center}
     .foot-grid{grid-template-columns:1fr;gap:36px}
-    .hero .sub{font-size:1.08rem}
+    .hero .sub{font-size:1.05rem}
+    .idris-grid{grid-template-columns:1fr}
+    .tt-row{--tt-cols:72px repeat(var(--day-cols,4),minmax(80px,1fr));min-width:480px}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important}
@@ -337,9 +349,9 @@
 
   /* ---- hero carousel (contained right panel) ---- */
   .hero-carousel-wrap{
-    position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;
-    border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.55);
-    flex-shrink:0;
+    position:relative;aspect-ratio:3/2;border-radius:6px;overflow:hidden;
+    border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.6);
+    width:100%;
   }
   .hero-carousel{position:absolute;inset:0}
   .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;will-change:opacity}
@@ -366,10 +378,6 @@
   .carousel-next{right:10px}
   .carousel-prev:hover,.carousel-next:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
   .carousel-prev svg,.carousel-next svg{width:16px;height:16px}
-  @media(max-width:860px){
-    .hero-inner{grid-template-columns:1fr!important}
-    .hero-carousel-wrap{aspect-ratio:16/9;width:100%}
-  }
 
 </style>
 </head>
