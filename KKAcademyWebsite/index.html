@@ -111,6 +111,13 @@
     border:1px solid var(--line);padding:8px 16px;border-radius:30px;
   }
   .loc-chips span b{color:var(--bone);font-weight:600}
+  .hero-social{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px}
+  .hero-social-label{
+    font-family:"Barlow Semi Condensed";text-transform:uppercase;letter-spacing:.2em;
+    font-size:.74rem;font-weight:600;color:var(--gold);
+  }
+  .hero-social a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--bone);transition:.2s}
+  .hero-social a:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
   .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
     font-family:"Barlow Semi Condensed";letter-spacing:.2em;font-size:.68rem;color:var(--muted);text-transform:uppercase;
     display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -218,7 +225,9 @@
   .sched-footer{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px}
 
   @media(max-width:900px){
-    .tt-row{--tt-cols:72px repeat(var(--day-cols,4),minmax(90px,1fr));min-width:500px}
+    .tt-row{--tt-cols:72px repeat(var(--day-cols,4),minmax(96px,1fr))}
+    .timetable{min-width:0}
+    .tt-row{min-width:calc(72px + var(--day-cols,4) * 96px)}
   }
   @media(max-width:680px){
     .timetable{font-size:.9em}
@@ -338,7 +347,8 @@
     .foot-grid{grid-template-columns:1fr;gap:36px}
     .hero .sub{font-size:1.05rem}
     .idris-grid{grid-template-columns:1fr}
-    .tt-row{--tt-cols:72px repeat(var(--day-cols,4),minmax(80px,1fr));min-width:480px}
+    .tt-row{--tt-cols:72px repeat(var(--day-cols,4),minmax(84px,1fr));min-width:calc(72px + var(--day-cols,4) * 84px)}
+    .scroll-hint{bottom:14px}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important}
@@ -462,6 +472,10 @@
         <span><b>Cochrane</b></span>
         <span><b>Okotoks</b></span>
       </div>
+      <div class="hero-social reveal">
+        <span class="hero-social-label">Follow Us</span>
+        <a href="https://www.instagram.com/kierankeddleacademy/" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      </div>
     </div>
 
     <div class="hero-carousel-wrap">
@@ -574,7 +588,7 @@
 
     <!-- BRAGG CREEK PANEL -->
     <div class="loc-panel active reveal" id="panel-bragg">
-      <div class="timetable" style="--tt-cols:90px repeat(4,1fr)">
+      <div class="timetable" style="--tt-cols:90px repeat(4,1fr);--day-cols:4">
         <div class="tt-row head">
           <div></div><div>Monday</div><div>Tuesday</div><div>Wednesday</div><div>Saturday</div>
         </div>
@@ -623,7 +637,7 @@
 
     <!-- COCHRANE PANEL -->
     <div class="loc-panel reveal" id="panel-cochrane">
-      <div class="timetable" style="--tt-cols:90px repeat(6,1fr)">
+      <div class="timetable" style="--tt-cols:90px repeat(6,1fr);--day-cols:6">
         <div class="tt-row head">
           <div></div><div>Monday</div><div>Tuesday</div><div>Wednesday</div><div>Thursday</div><div>Saturday</div><div>Sunday</div>
         </div>
@@ -667,22 +681,22 @@
           <div class="tt-cell"></div>
           <div class="tt-cell"><div class="cls-card bjj gold" data-c="bjj"><b>BJJ</b><span>Adults (12–2pm)</span></div></div>
         </div>
-        <!-- 5:30pm row -->
+        <!-- 4:30pm youth muay thai row -->
         <div class="tt-row">
-          <div class="tt-time">5:30 pm</div>
-          <div class="tt-cell"><div class="cls-card boxing youth" data-c="boxing youth"><b>Boxing</b><span>Junior (8–14)</span></div></div>
+          <div class="tt-time">4:30 pm</div>
+          <div class="tt-cell"></div>
           <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
-          <div class="tt-cell"><div class="cls-card boxing youth" data-c="boxing youth"><b>Boxing</b><span>Junior (8–14)</span></div></div>
+          <div class="tt-cell"></div>
           <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Youth (ages 4–9)</span></div></div>
           <div class="tt-cell"></div>
           <div class="tt-cell"></div>
         </div>
-        <!-- 5:30pm teens row -->
+        <!-- 5:30pm row -->
         <div class="tt-row">
           <div class="tt-time">5:30 pm</div>
-          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card boxing youth" data-c="boxing youth"><b>Boxing</b><span>Junior (8–14)</span></div></div>
           <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (10–14)</span></div></div>
-          <div class="tt-cell"></div>
+          <div class="tt-cell"><div class="cls-card boxing youth" data-c="boxing youth"><b>Boxing</b><span>Junior (8–14)</span></div></div>
           <div class="tt-cell"><div class="cls-card muaythai youth" data-c="muaythai youth"><b>Muay Thai</b><span>Teens (10–14)</span></div></div>
           <div class="tt-cell"></div>
           <div class="tt-cell"></div>
@@ -712,7 +726,7 @@
 
     <!-- OKOTOKS PANEL -->
     <div class="loc-panel reveal" id="panel-okotoks">
-      <div class="timetable" style="--tt-cols:90px repeat(3,1fr)">
+      <div class="timetable" style="--tt-cols:90px repeat(3,1fr);--day-cols:3">
         <div class="tt-row head">
           <div></div><div>Monday</div><div>Wednesday</div><div>Saturday</div>
         </div>
@@ -913,7 +927,7 @@
     <p class="reveal">Pick your location, walk in, and find out what world-class coaching feels like. No commitment — just show up.</p>
     <div class="acts reveal">
       <a href="https://lnk.bio/KKACADEMY" target="_blank" rel="noopener" class="btn btn-primary">Claim Your Free Class</a>
-      <a href="#contact" class="btn btn-ghost">Contact the Team</a>
+      <a href="mailto:kk@kierankeddleacademy.com" class="btn btn-ghost">Contact the Team</a>
     </div>
     <div class="app-badges reveal">
       <a href="https://apps.apple.com/ca/app/kieran-keddle-academy/id6747680001" target="_blank" rel="noopener"><span>&#63743;</span><span><small>Download on the</small><b>App Store</b></span></a>
@@ -948,7 +962,7 @@
     </div>
     <div class="foot-bottom">
       <span>&copy; 2026 Kieran Keddle Academy</span>
-      <span>Site redesign concept · Built by Abraxis Technologies</span>
+      <span>Built by Abraxis Technologies</span>
     </div>
   </div>
 </footer>
